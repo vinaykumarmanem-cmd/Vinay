@@ -454,6 +454,12 @@
     </style>
 </head>
 <body>
+    <button id="music-btn" onclick="toggleMusic()" 
+style="position: fixed; top: 20px; right: 20px; z-index: 999; 
+background: #1a2a4a; color: white; border: none; 
+padding: 10px 15px; border-radius: 50px; cursor: pointer;">
+🔊 Music
+</button>
     <!-- Floating Petals -->
     <div id="petals"></div>
     
@@ -597,8 +603,12 @@
             <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 8px;">29 April 2026 • Chapara Village</p>
         </footer>
     </div>
+    <audio id="bg-music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
     
     <script>
+        
         // Create floating petals
         function createPetals() {
             const petals = ['🌸', '🌺', '💮', '✿', '❀'];
@@ -615,6 +625,8 @@
         function openInvitation() {
             const cover = document.getElementById('cover');
             const mainContent = document.getElementById('main-content');
+            const music = document.getElementById("bg-music");
+    music.play().catch(() => {});
             
             cover.classList.add('closing');
             
@@ -645,6 +657,25 @@
                 observer.observe(el);
             });
         }
+        <script>
+
+const music = document.getElementById("bg-music");
+let isPlaying = false;
+
+function toggleMusic() {
+    if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+        document.getElementById("music-btn").textContent = "🔇 Music";
+    } else {
+        music.play();
+        isPlaying = true;
+        document.getElementById("music-btn").textContent = "🔊 Music";
+    }
+}
+
+// Create floating petals
+function createPetals() {
         
         // Initialize
         createPetals();
