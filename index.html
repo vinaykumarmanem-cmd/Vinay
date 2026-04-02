@@ -597,9 +597,6 @@
             <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 8px;">29 April 2026 • Chapara Village</p>
         </footer>
     </div>
-    <audio id="bg-music" loop>
-    <source src="song.mp3.mpeg" type="audio/mpeg">
-</audio>
     
     <script>
         // Create floating petals
@@ -614,24 +611,25 @@
             }
         }
         
-       function openInvite() {
-    document.getElementById('cover').style.display = 'none';
-    document.getElementById('secret-details').style.display = 'block';
-    document.getElementById('musicBtn').style.display = 'block';
-
-    const music = document.getElementById('bg-music');
-    music.play();
-}
-
-function toggleMusic() {
-    const music = document.getElementById('bg-music');
-
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
-}
+        // Open invitation
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            
+            cover.classList.add('closing');
+            
+            setTimeout(() => {
+                cover.classList.add('hidden');
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '0';
+                mainContent.style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    initScrollAnimations();
+                }, 50);
+            }, 400);
+        }
         
         // Scroll animations using Intersection Observer
         function initScrollAnimations() {
