@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Nagaraju & Neelaveni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        :root {
+            --navy: #1a2a4a;
+            --deepNavy: #0f1d35;
+            --gold: #c9a227;
+            --lightGold: #e8d48b;
+            --cream: #faf8f3;
+            --white: #ffffff;
+            --darkText: #1a1a1a;
+            --bodyText: #4a4a4a;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 20px;
+        }
+        
+        @keyframes fall1 { 0% { transform: translate(0, -50px) rotate(0deg); opacity: 1; } 100% { transform: translate(30px, 100vh) rotate(360deg); opacity: 0; } }
+        @keyframes fall2 { 0% { transform: translate(0, -50px) rotate(0deg); opacity: 1; } 100% { transform: translate(-20px, 100vh) rotate(-360deg); opacity: 0; } }
+        @keyframes fall3 { 0% { transform: translate(0, -50px) rotate(0deg); opacity: 1; } 100% { transform: translate(40px, 100vh) rotate(300deg); opacity: 0; } }
+        
+        .p1 { left: 5%; animation: fall1 12s linear infinite; }
+        .p2 { left: 15%; animation: fall2 10s linear infinite 2s; }
+        .p3 { left: 25%; animation: fall3 14s linear infinite 1s; }
+        .p4 { left: 35%; animation: fall1 11s linear infinite 3s; }
+        .p5 { left: 45%; animation: fall2 13s linear infinite 0.5s; }
+        .p6 { left: 55%; animation: fall3 12s linear infinite 2.5s; }
+        .p7 { left: 65%; animation: fall1 10s linear infinite 1.5s; }
+        .p8 { left: 75%; animation: fall2 14s linear infinite 4s; }
+        .p9 { left: 85%; animation: fall3 11s linear infinite 0.8s; }
+        .p10 { left: 95%; animation: fall1 13s linear infinite 3.5s; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in { animation: fadeInUp 0.8s ease forwards; }
+        .scale-in { animation: scaleIn 0.6s ease forwards; }
+        
+        /* Cover Screen */
+        #cover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.4s ease;
+        }
+        
+        #cover.closing {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .cover-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid var(--gold);
+            box-shadow: 0 25px 50px rgba(26, 42, 74, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ornament {
+            font-size: 30px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .cover-card h1 {
+            color: var(--navy);
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--navy);
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+        
+        .couple-names .amp {
+            font-size: 24px;
+            color: var(--gold);
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .invite-text {
+            color: var(--bodyText);
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        
+        .date-text {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--lightGold) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+            font-family: 'Playfair Display', serif;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background: var(--navy);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(26, 42, 74, 0.3);
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(26, 42, 74, 0.4);
+        }
+        
+        .btn:active { transform: scale(0.98); }
+        
+        /* Main Content */
+        #main-content { display: none; }
+        
+        /* Welcome Section */
+        .welcome-section {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .welcome-section h2 {
+            color: var(--gold);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-section p {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .welcome-icon {
+            font-size: 50px;
+            animation: float 2s ease-in-out infinite;
+        }
+        
+        /* Couple Section */
+        .couple-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .couple-photo-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+        }
+        
+        .couple-photo-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 280px;
+            border: 3px dashed rgba(184, 134, 11, 0.5);
+            border-radius: 50%;
+            animation: rotateBorder 15s linear infinite;
+            box-sizing: border-box;
+        }
+        
+        @keyframes rotateBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .couple-photo {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            background: #f0f0f0;
+        }
+        
+        .couple-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        
+        .couple-section h2 {
+            color: var(--navy);
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .couple-section .quote {
+            color: var(--bodyText);
+            font-size: 20px;
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Events Section */
+        .events-section {
+            background: rgba(255,255,255,0.7);
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            color: var(--navy);
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .section-title .divider {
+            color: var(--gold);
+            font-size: 28px;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(26, 42, 74, 0.1);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .event-card:hover { transform: translateY(-5px); }
+        
+        .event-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .event-card h3 {
+            color: var(--navy);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .event-date {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .event-time {
+            color: var(--darkText);
+            margin-bottom: 5px;
+        }
+        
+        .event-location {
+            color: var(--bodyText);
+            margin-bottom: 10px;
+        }
+        
+        .event-desc {
+            color: var(--bodyText);
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--navy);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 40px;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        
+        .map-btn:hover { background: var(--deepNavy); }
+        
+        .map-container {
+            text-align: center;
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            padding: 80px 20px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            aspect-ratio: 3/4;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img { transform: scale(1.05); }
+        
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        footer h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        footer .rings {
+            font-size: 45px;
+            animation: pulse 2s infinite;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        footer .names {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            font-size: 20px;
+        }
+        
+        footer .heart { color: var(--gold); font-size: 28px; }
+        
+        footer .label { font-size: 14px; color: rgba(255,255,255,0.7); }
+        
+        footer .footer-ornament {
+            color: var(--gold);
+            font-size: 36px;
+            margin: 25px 0;
+        }
+        
+        footer .made-with {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+        
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hidden */
+        .hidden { display: none !important; }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .cover-card { padding: 30px 20px; }
+            .couple-names { font-size: 28px; }
+            .events-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Petals -->
+    <div id="petals"></div>
+    
+    <!-- Cover Screen -->
+    <div id="cover">
+        <div class="cover-card">
+            <div class="ornament">❦</div>
+            <p class="invite-text">Together with their Families</p>
+            
+            <h1>Nagaraju</h1>
+            <span class="couple-names">
+                <span class="amp">&</span>
+            </span>
+            <h1>Neelaveni</h1>
+            
+            <p class="invite-text">Request the pleasure of your company<br>at their Wedding Ceremony</p>
+            
+            <p class="date-text">29 April 2026</p>
+            
+            <button class="btn" onclick="openInvitation()">Open Invitation</button>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section scroll-animate">
+            <div class="welcome-icon">🏠</div>
+            <h2>Manem's Family</h2>
+            <p>Welcomes You</p>
+            <p style="color: rgba(255,255,255,0.8); font-size: 16px;">With joyful hearts and warm hospitality, we invite you to celebrate this beautiful union</p>
+        </section>
+        
+        <!-- Couple Section -->
+        <section class="couple-section scroll-animate">
+            <div class="couple-photo-wrapper">
+                <div class="couple-photo-border"></div>
+                <div class="couple-photo">
+                    <img src="couple.jpg.jpeg" alt="Couple">
+                </div>
+            </div>
+            <div class="ornament">❦</div>
+            <h2>Nagaraju & Neelaveni</h2>
+            <p class="quote">"Two souls, one heart, forever entwined in love's eternal dance"</p>
+        </section>
+        
+        <!-- Events Section -->
+        <section class="events-section scroll-animate">
+            <div class="section-title">
+                <div class="divider">✦</div>
+                <h2>Event Schedule</h2>
+                <p style="color: var(--bodyText);">Join us for the celebrations</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card scroll-animate">
+                    <span class="event-icon">🪔</span>
+                    <h3>Sumuhurtham</h3>
+                    <p class="event-date">29 April 2026</p>
+                    <p class="event-time">7:51 PM</p>
+                    <p class="event-location">Wednesday Night</p>
+                    <p class="event-desc">The sacred auspicious moment</p>
+                </div>
+                
+                <div class="event-card scroll-animate">
+                    <span class="event-icon">🕉️</span>
+                    <h3>Marriage</h3>
+                    <p class="event-date">29 April 2026</p>
+                    <p class="event-Day">Wednesday</p>
+                    <p class="event-location">Chapara Village, Bendi Street</p>
+                    <p class="event-desc">At our residence</p>
+                </div>
+                
+                <div class="event-card scroll-animate">
+                    <span class="event-icon">🍽️</span>
+                    <h3>Lunch</h3>
+                    <p class="event-date">29 April 2026</p>
+                    <p class="event-time">12:00 Noon onwards</p>
+                    <p class="event-location">Chapara Village, Bendi Street</p>
+                    <p class="event-desc">At our residence</p>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <a href="https://www.google.com/maps/search/?api=1&query=Chapara+Village+pedda+devara+veedhi+532216" target="_blank" class="map-btn">
+                    📍 View on Google Maps
+                </a>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section class="gallery-section scroll-animate">
+            <div class="section-title">
+                <div class="divider">✦</div>
+                <h2>Precious Moments</h2>
+                <p style="color: var(--bodyText);">A glimpse into our journey</p>
+            </div>
+            
+            <div class="gallery-grid">
+    <div class="gallery-item scroll-animate">
+        <img src="01.jpg" alt="Wedding 1">
+    </div>
+    <div class="gallery-item scroll-animate">
+        <img src="02.jpg" alt="Wedding 2">
+    </div>
+    <div class="gallery-item scroll-animate">
+        <img src="03.jpg" alt="Wedding 3">
+    </div>
+    <div class="gallery-item scroll-animate">
+        <img src="04.jpg" alt="Wedding 4">
+    </div>
+    <div class="gallery-item scroll-animate">
+        <img src="05.jpg" alt="Wedding 5">
+    </div>
+    <div class="gallery-item scroll-animate">
+        <img src="06.jpg" alt="Wedding 6">
+    </div>
+</div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <span class="rings">💍</span>
+            <h3>Forever & Always</h3>
+            <p>We look forward to sharing our special day with you</p>
+            
+            <div class="names">
+                <div>
+                    <strong>Nagaraju</strong>
+                    <p class="label">Groom</p>
+                </div>
+                <span class="heart">❤</span>
+                <div>
+                    <strong>Neelaveni</strong>
+                    <p class="label">Bride</p>
+                </div>
+            </div>
+            
+            <div class="footer-ornament">❦</div>
+            <p class="made-with">Made with love for our special day</p>
+            <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 8px;">29 April 2026 • Chapara Village</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Create floating petals
+        function createPetals() {
+            const petals = ['🌸', '🌺', '💮', '✿', '❀'];
+            const container = document.getElementById('petals');
+            
+            for (let i = 1; i <= 10; i++) {
+                const petal = document.createElement('span');
+                petal.className = 'petal p' + i;
+                petal.textContent = petals[i % petals.length];
+            }
+        }
+        
+        // Open invitation
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            
+            cover.classList.add('closing');
+            
+            setTimeout(() => {
+                cover.classList.add('hidden');
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '0';
+                mainContent.style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    initScrollAnimations();
+                }, 50);
+            }, 400);
+        }
+        
+        // Scroll animations using Intersection Observer
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Initialize
+        createPetals();
+    </script>
+</body>
+</html>
