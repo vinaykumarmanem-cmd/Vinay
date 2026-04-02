@@ -606,59 +606,9 @@ padding: 10px 15px; border-radius: 50px; cursor: pointer;">
     <audio id="bg-music" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
-    
     <script>
-        
-        // Create floating petals
-        function createPetals() {
-            const petals = ['🌸', '🌺', '💮', '✿', '❀'];
-            const container = document.getElementById('petals');
-            
-            for (let i = 1; i <= 10; i++) {
-                const petal = document.createElement('span');
-                petal.className = 'petal p' + i;
-                petal.textContent = petals[i % petals.length];
-            }
-        }
-        
-        // Open invitation
-        function openInvitation() {
-            const cover = document.getElementById('cover');
-            const mainContent = document.getElementById('main-content');
-            const music = document.getElementById("bg-music");
-    music.play().catch(() => {});
-            
-            cover.classList.add('closing');
-            
-            setTimeout(() => {
-                cover.classList.add('hidden');
-                mainContent.style.display = 'block';
-                mainContent.style.opacity = '0';
-                mainContent.style.transition = 'opacity 0.5s ease';
-                
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                    initScrollAnimations();
-                }, 50);
-            }, 400);
-        }
-        
-        // Scroll animations using Intersection Observer
-        function initScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.scroll-animate').forEach(el => {
-                observer.observe(el);
-            });
-        }
-        <script>
 
+// 🎵 Music setup
 const music = document.getElementById("bg-music");
 let isPlaying = false;
 
@@ -674,11 +624,59 @@ function toggleMusic() {
     }
 }
 
-// Create floating petals
+// 🌸 Create floating petals
 function createPetals() {
-        
-        // Initialize
-        createPetals();
-    </script>
+    const petals = ['🌸', '🌺', '💮', '✿', '❀'];
+    const container = document.getElementById('petals');
+
+    for (let i = 1; i <= 10; i++) {
+        const petal = document.createElement('span');
+        petal.className = 'petal p' + i;
+        petal.textContent = petals[i % petals.length];
+        container.appendChild(petal); // 👉 YOU MISSED THIS LINE
+    }
+}
+
+// 🎉 Open invitation
+function openInvitation() {
+    const cover = document.getElementById('cover');
+    const mainContent = document.getElementById('main-content');
+
+    music.play().catch(() => {});
+
+    cover.classList.add('closing');
+
+    setTimeout(() => {
+        cover.classList.add('hidden');
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '0';
+        mainContent.style.transition = 'opacity 0.5s ease';
+
+        setTimeout(() => {
+            mainContent.style.opacity = '1';
+            initScrollAnimations();
+        }, 50);
+    }, 400);
+}
+
+// ✨ Scroll animations
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// 🚀 Initialize
+createPetals();
+
+</script>
 </body>
 </html>
