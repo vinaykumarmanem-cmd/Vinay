@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation | Nagaraju & Neelaveni</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-   /* Make entire page fit in one screen */
+   <!-- ❌ FIX: Your CSS is outside <style> → wrap it properly -->
+
+<head>
+...
+<style>
+/* Make entire page fit in one screen */
 body {
     overflow: hidden;
 }
@@ -16,7 +21,7 @@ body {
 .events-section,
 .gallery-section,
 footer {
-    padding: 20px 10px;
+    padding: 10px 8px; /* 🔽 reduced more */
 }
 
 /* Make main content single screen layout */
@@ -28,48 +33,53 @@ footer {
     overflow: hidden;
 }
 
-/* Shrink texts */
-.section-title h2 { font-size: 22px; }
-.couple-section h2 { font-size: 24px; }
-.event-card h3 { font-size: 18px; }
+/* 🔽 REMOVE WELCOME SECTION COMPLETELY */
+.welcome-section {
+    display: none;
+}
+
+/* Shrink texts more */
+.section-title h2 { font-size: 18px; }
+.couple-section h2 { font-size: 20px; }
+.event-card h3 { font-size: 16px; }
 
 /* Compact event cards */
 .event-card {
-    padding: 15px 10px;
+    padding: 10px 6px;
 }
 
 /* Make events in single row */
 .events-grid {
     display: flex;
-    gap: 10px;
+    gap: 6px;
 }
 
 /* Make gallery horizontal scroll */
 .gallery-grid {
     display: flex;
     overflow-x: auto;
-    gap: 10px;
+    gap: 6px;
 }
 
 .gallery-item {
-    min-width: 120px;
+    min-width: 90px;
     aspect-ratio: 1/1;
 }
 
 /* Reduce couple image */
 .couple-photo-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 
 .couple-photo-border {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 
 .couple-photo {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     top: 10px;
     left: 10px;
 }
@@ -77,9 +87,13 @@ footer {
 /* Hide extra texts to save space */
 .quote,
 .event-desc,
-.map-container {
+.map-container,
+.section-title p,
+footer p {
     display: none;
 }
+</style>
+</head>
 </head>
 <body>
     <!-- Cover Screen -->
