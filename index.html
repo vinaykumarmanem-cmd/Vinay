@@ -616,35 +616,27 @@
         
         // Open invitation
         function openInvitation() {
-            const cover = document.getElementById('cover').style.display = 'none';
-            const mainContent = document.getElementById('main-content').style.display = 'block';
-            const music = document.getElementById('bg-music');
-    music.play();
-}
-        function toggleMusic() {
+    const cover = document.getElementById('cover');
+    const mainContent = document.getElementById('main-content');
     const music = document.getElementById('bg-music');
 
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
+    // play music
+    if (music) music.play();
+
+    // start fade animation
+    cover.classList.add('closing');
+
+    setTimeout(() => {
+        cover.style.display = 'none';
+
+        // show content (optional before redirect)
+        mainContent.style.display = 'block';
+
+        // ✅ Redirect AFTER animation
+        window.location.href = "invitation.html";
+
+    }, 400); // match your CSS transition time
 }
-            
-            cover.classList.add('closing');
-            
-            setTimeout(() => {
-                cover.classList.add('hidden');
-                mainContent.style.display = 'block';
-                mainContent.style.opacity = '0';
-                mainContent.style.transition = 'opacity 0.5s ease';
-                
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                    initScrollAnimations();
-                }, 50);
-            }, 400);
-        }
         
         // Scroll animations using Intersection Observer
         function initScrollAnimations() {
