@@ -670,29 +670,33 @@
         }
     }
 
-    // Open invitation
-    function openInvitation() {
-        const cover = document.getElementById('cover');
-        const mainContent = document.getElementById('main-content');
+   function openInvitation() {
+    const cover = document.getElementById('cover');
+    const mainContent = document.getElementById('main-content');
 
-        // 🔊 play music
-        const music = document.getElementById('bg-music');
-        music.play();
+    // 🔊 play music if any
+    const music = document.getElementById('bg-music');
+    if (music) music.play();
 
-        cover.classList.add('closing');
-        
+    cover.classList.add('closing');
+
+    setTimeout(() => {
+        cover.classList.add('hidden');
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '0';
+        mainContent.style.transition = 'opacity 0.5s ease';
+
         setTimeout(() => {
-            cover.classList.add('hidden');
-            mainContent.style.display = 'block';
-            mainContent.style.opacity = '0';
-            mainContent.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                mainContent.style.opacity = '1';
-                initScrollAnimations();
-            }, 50);
-        }, 400);
-    }
+            mainContent.style.opacity = '1';
+            initScrollAnimations();
+
+            // ✅ Redirect to a new page (change the URL)
+            // window.location.href = "invitation.html"; // replaces current page
+            // or
+            // window.open("invitation.html", "_blank"); // opens in new tab
+        }, 50);
+    }, 400);
+}
 
     // Scroll animations
     function initScrollAnimations() {
