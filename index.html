@@ -508,7 +508,7 @@
             
             <p class="invite-text">Request the pleasure of your company<br>at their Wedding Ceremony</p>
             
-            </style>
+            
             <div id="countdown" class="countdown-container">
     <div class="time-box">
         <span id="days">00</span>
@@ -653,93 +653,93 @@
         </footer>
     </div>
     
-    <script>
-        // Create floating petals
-        function createPetals() {
-            const petals = ['🌸', '🌺', '💮', '✿', '❀'];
-            const container = document.getElementById('petals');
-            
-            for (let i = 1; i <= 10; i++) {
-                const petal = document.createElement('span');
-                petal.className = 'petal p' + i;
-                petal.textContent = petals[i % petals.length];
-            }
-        }
-        
-        // Open invitation
-        function openInvitation() {
-            const cover = document.getElementById('cover');
-            const mainContent = document.getElementById('main-content');
-             const music = document.getElementById('bg-music');
-    music.play();
-            
-            cover.classList.add('closing');
-            
-            setTimeout(() => {
-                cover.classList.add('hidden');
-                mainContent.style.display = 'block';
-                mainContent.style.opacity = '0';
-                mainContent.style.transition = 'opacity 0.5s ease';
-                
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                    initScrollAnimations();
-                }, 50);
-            }, 400);
-        }
-        
-        // Scroll animations using Intersection Observer
-        function initScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.scroll-animate').forEach(el => {
-                observer.observe(el);
-            });
-        }
-        
-        // Initialize
-        createPetals();
-        function updateCountdown() {
-    const weddingDate = new Date("April 29, 2026 19:51:00").getTime();
-    const now = new Date().getTime();
-    const gap = weddingDate - now;
+ <!-- ❌ REMOVE this wrong line inside body -->
+<!-- </style> -->
 
-    if (gap <= 0) {
-        document.getElementById("countdown").innerHTML = "🎉 It's Wedding Day!";
-        return;
+<script>
+    // Create floating petals
+    function createPetals() {
+        const petals = ['🌸', '🌺', '💮', '✿', '❀'];
+        const container = document.getElementById('petals');
+        
+        for (let i = 1; i <= 10; i++) {
+            const petal = document.createElement('span');
+            petal.className = 'petal p' + i;
+            petal.textContent = petals[i % petals.length];
+            container.appendChild(petal); // ✅ FIXED
+        }
     }
 
-    const days = Math.floor(gap / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((gap / (1000 * 60)) % 60);
-    const seconds = Math.floor((gap / 1000) % 60);
+    // Open invitation
+    function openInvitation() {
+        const cover = document.getElementById('cover');
+        const mainContent = document.getElementById('main-content');
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
+        // 🔊 play music
+        const music = document.getElementById('bg-music');
+        music.play();
 
-    // animation effect
-    document.querySelectorAll(".time-box span").forEach(el => {
-        el.style.transform = "scale(1.1)";
-        setTimeout(() => el.style.transform = "scale(1)", 200);
-    });
-}
+        cover.classList.add('closing');
+        
+        setTimeout(() => {
+            cover.classList.add('hidden');
+            mainContent.style.display = 'block';
+            mainContent.style.opacity = '0';
+            mainContent.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                initScrollAnimations();
+            }, 50);
+        }, 400);
+    }
 
-// Start countdown
-setInterval(updateCountdown, 1000);
-updateCountdown();
-    </script>
-    <audio id="bg-music" loop>
-    <!-- 🔴 CHANGE THIS FILE NAME -->
-    <source src="song.mp3" type="audio/mpeg">
-</audio>
+    // Scroll animations
+    function initScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Countdown
+    function updateCountdown() {
+       const weddingDate = new Date("2026-04-29T19:51:00+05:30").getTime(); // ✅ FIXED FORMAT
+        const now = new Date().getTime();
+        const gap = weddingDate - now;
+
+        if (gap <= 0) {
+            document.getElementById("countdown").innerHTML = "🎉 It's Wedding Day!";
+            return;
+        }
+
+        const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((gap / (1000 * 60)) % 60);
+        const seconds = Math.floor((gap / 1000) % 60);
+
+        const format = n => String(n).padStart(2, '0');
+
+document.getElementById("days").innerText = format(days);
+document.getElementById("hours").innerText = format(hours);
+document.getElementById("minutes").innerText = format(minutes);
+document.getElementById("seconds").innerText = format(seconds);
+    }
+
+    // Initialize AFTER page loads
+    window.onload = function () {
+        createPetals();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    };
+</script>
     
 </body>
 </html>
