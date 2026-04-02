@@ -194,13 +194,10 @@
         }
         
         /* Couple Section */
-.couple-section {
-    padding: 80px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, #fffaf0 0%, #f7e7c6 100%);
-    border-top: 1px solid rgba(201, 162, 39, 0.2);
-    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
-}
+        .couple-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
         
         .couple-photo-wrapper {
             position: relative;
@@ -291,14 +288,14 @@
         }
         
         .event-card {
-    background: linear-gradient(135deg, #fffaf0 0%, #f7e7c6 100%);
-    border-radius: 20px;
-    padding: 30px 20px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(26, 42, 74, 0.1);
-    border: 1px solid rgba(184, 134, 11, 0.2);
-    transition: transform 0.3s;
-}
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(26, 42, 74, 0.1);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: transform 0.3s;
+        }
         
         .event-card:hover { transform: translateY(-5px); }
         
@@ -454,41 +451,7 @@
             .couple-names { font-size: 28px; }
             .events-grid { grid-template-columns: 1fr; }
         }
-        /* Countdown Styles */
-.countdown-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.time-box {
-    background: linear-gradient(135deg, var(--navy), var(--deepNavy));
-    color: white;
-    padding: 12px 10px;
-    border-radius: 12px;
-    width: 70px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-}
-
-.time-box:hover {
-    transform: translateY(-3px);
-}
-
-.time-box span {
-    font-size: 22px;
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    display: block;
-    transition: transform 0.2s;
-}
-
-.time-box small {
-    font-size: 12px;
-    opacity: 0.8;
-}
+    </style>
 </head>
 <body>
     <!-- Floating Petals -->
@@ -497,7 +460,7 @@
     <!-- Cover Screen -->
     <div id="cover">
         <div class="cover-card">
-            <div class="ornament">❦</div>
+            <div class="ornament">🕉️</div>
             <p class="invite-text">Together with their Families</p>
             
             <h1>Nagaraju</h1>
@@ -508,25 +471,7 @@
             
             <p class="invite-text">Request the pleasure of your company<br>at their Wedding Ceremony</p>
             
-            
-            <div id="countdown" class="countdown-container">
-    <div class="time-box">
-        <span id="days">00</span>
-        <small>Days</small>
-    </div>
-    <div class="time-box">
-        <span id="hours">00</span>
-        <small>Hours</small>
-    </div>
-    <div class="time-box">
-        <span id="minutes">00</span>
-        <small>Minutes</small>
-    </div>
-    <div class="time-box">
-        <span id="seconds">00</span>
-        <small>Seconds</small>
-    </div>
-</div>
+            <p class="date-text">29 April 2026</p>
             
             <button class="btn" onclick="openInvitation()">Open Invitation</button>
         </div>
@@ -550,7 +495,7 @@
                     <img src="couple.jpg.jpeg" alt="Couple">
                 </div>
             </div>
-            <div class="ornament">❦</div>
+            <div class="ornament">🕉️</div>
             <h2>Nagaraju & Neelaveni</h2>
             <p class="quote">"Two souls, one heart, forever entwined in love's eternal dance"</p>
         </section>
@@ -653,97 +598,56 @@
         </footer>
     </div>
     
- <!-- ❌ REMOVE this wrong line inside body -->
-<!-- </style> -->
-
-<script>
-    // Create floating petals
-    function createPetals() {
-        const petals = ['🌸', '🌺', '💮', '✿', '❀'];
-        const container = document.getElementById('petals');
-        
-        for (let i = 1; i <= 10; i++) {
-            const petal = document.createElement('span');
-            petal.className = 'petal p' + i;
-            petal.textContent = petals[i % petals.length];
-            container.appendChild(petal); // ✅ FIXED
+    <script>
+        // Create floating petals
+        function createPetals() {
+            const petals = ['🌸', '🌺', '💮', '✿', '❀'];
+            const container = document.getElementById('petals');
+            
+            for (let i = 1; i <= 10; i++) {
+                const petal = document.createElement('span');
+                petal.className = 'petal p' + i;
+                petal.textContent = petals[i % petals.length];
+            }
         }
-    }
-
-   function openInvitation() {
-    const cover = document.getElementById('cover');
-    const mainContent = document.getElementById('main-content');
-
-    // 🔊 play music if any
-    const music = document.getElementById('bg-music');
-    if (music) music.play();
-
-    cover.classList.add('closing');
-
-    setTimeout(() => {
-        cover.classList.add('hidden');
-        mainContent.style.display = 'block';
-        mainContent.style.opacity = '0';
-        mainContent.style.transition = 'opacity 0.5s ease';
-
-        setTimeout(() => {
-            mainContent.style.opacity = '1';
-            initScrollAnimations();
-
-            // ✅ Redirect to a new page (change the URL)
-            // window.location.href = "invitation.html"; // replaces current page
-            // or
-            // window.open("invitation.html", "_blank"); // opens in new tab
-        }, 50);
-    }, 400);
-}
-
-    // Scroll animations
-    function initScrollAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        
+        // Open invitation
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            
+            cover.classList.add('closing');
+            
+            setTimeout(() => {
+                cover.classList.add('hidden');
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '0';
+                mainContent.style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    initScrollAnimations();
+                }, 50);
+            }, 400);
+        }
+        
+        // Scroll animations using Intersection Observer
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
             });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            observer.observe(el);
-        });
-    }
-
-    // Countdown
-    function updateCountdown() {
-       const weddingDate = new Date("2026-04-29T19:51:00+05:30").getTime(); // ✅ FIXED FORMAT
-        const now = new Date().getTime();
-        const gap = weddingDate - now;
-
-        if (gap <= 0) {
-            document.getElementById("countdown").innerHTML = "🎉 It's Wedding Day!";
-            return;
         }
-
-        const days = Math.floor(gap / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((gap / (1000 * 60)) % 60);
-        const seconds = Math.floor((gap / 1000) % 60);
-
-        const format = n => String(n).padStart(2, '0');
-
-document.getElementById("days").innerText = format(days);
-document.getElementById("hours").innerText = format(hours);
-document.getElementById("minutes").innerText = format(minutes);
-document.getElementById("seconds").innerText = format(seconds);
-    }
-
-    // Initialize AFTER page loads
-    window.onload = function () {
+        
+        // Initialize
         createPetals();
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    };
-</script>
-    
+    </script>
 </body>
 </html>
