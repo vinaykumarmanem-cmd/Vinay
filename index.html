@@ -28,28 +28,6 @@
         
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         
-        .petal {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            font-size: 20px;
-        }
-        
-        @keyframes fall1 { 0% { transform: translate(0, -50px) rotate(0deg); opacity: 1; } 100% { transform: translate(30px, 100vh) rotate(360deg); opacity: 0; } }
-        @keyframes fall2 { 0% { transform: translate(0, -50px) rotate(0deg); opacity: 1; } 100% { transform: translate(-20px, 100vh) rotate(-360deg); opacity: 0; } }
-        @keyframes fall3 { 0% { transform: translate(0, -50px) rotate(0deg); opacity: 1; } 100% { transform: translate(40px, 100vh) rotate(300deg); opacity: 0; } }
-        
-        .p1 { left: 5%; animation: fall1 12s linear infinite; }
-        .p2 { left: 15%; animation: fall2 10s linear infinite 2s; }
-        .p3 { left: 25%; animation: fall3 14s linear infinite 1s; }
-        .p4 { left: 35%; animation: fall1 11s linear infinite 3s; }
-        .p5 { left: 45%; animation: fall2 13s linear infinite 0.5s; }
-        .p6 { left: 55%; animation: fall3 12s linear infinite 2.5s; }
-        .p7 { left: 65%; animation: fall1 10s linear infinite 1.5s; }
-        .p8 { left: 75%; animation: fall2 14s linear infinite 4s; }
-        .p9 { left: 85%; animation: fall3 11s linear infinite 0.8s; }
-        .p10 { left: 95%; animation: fall1 13s linear infinite 3.5s; }
-        
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -454,15 +432,6 @@
     </style>
 </head>
 <body>
-    <button id="music-btn" onclick="toggleMusic()" 
-style="position: fixed; top: 20px; right: 20px; z-index: 999; 
-background: #1a2a4a; color: white; border: none; 
-padding: 10px 15px; border-radius: 50px; cursor: pointer;">
-🔊 Music
-</button>
-    <!-- Floating Petals -->
-    <div id="petals"></div>
-    
     <!-- Cover Screen -->
     <div id="cover">
         <div class="cover-card">
