@@ -614,19 +614,23 @@
             }
         }
         
-       function openInvitation() {
-    const cover = document.getElementById('cover');
-    const mainContent = document.getElementById('main-content');
+       function openInvite() {
+    document.getElementById('cover').style.display = 'none';
+    document.getElementById('secret-details').style.display = 'block';
+    document.getElementById('musicBtn').style.display = 'block';
+
+    const music = document.getElementById('bg-music');
+    music.play();
+}
+
+function toggleMusic() {
     const music = document.getElementById('bg-music');
 
-    if (music) music.play().catch(() => {});
-
-    cover.style.opacity = "0";
-
-    setTimeout(() => {
-        cover.style.display = 'none';
-        mainContent.style.display = 'block';
-    }, 400);
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
 }
         
         // Scroll animations using Intersection Observer
