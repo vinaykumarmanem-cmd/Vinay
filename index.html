@@ -619,6 +619,15 @@
     const cover = document.getElementById('cover');
     const mainContent = document.getElementById('main-content');
     const music = document.getElementById('bg-music');
+            function toggleMusic() {
+    const music = document.getElementById('bg-music');
+
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
 
     // play music
     if (music) music.play();
