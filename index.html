@@ -451,6 +451,41 @@
             .couple-names { font-size: 28px; }
             .events-grid { grid-template-columns: 1fr; }
         }
+        /* Countdown Styles */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.time-box {
+    background: linear-gradient(135deg, var(--navy), var(--deepNavy));
+    color: white;
+    padding: 12px 10px;
+    border-radius: 12px;
+    width: 70px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.time-box:hover {
+    transform: translateY(-3px);
+}
+
+.time-box span {
+    font-size: 22px;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    display: block;
+    transition: transform 0.2s;
+}
+
+.time-box small {
+    font-size: 12px;
+    opacity: 0.8;
+}
     </style>
 </head>
 <body>
@@ -471,7 +506,25 @@
             
             <p class="invite-text">Request the pleasure of your company<br>at their Wedding Ceremony</p>
             
-            <p class="date-text">29 April 2026</p>
+            </style>
+            <div id="countdown" class="countdown-container">
+    <div class="time-box">
+        <span id="days">00</span>
+        <small>Days</small>
+    </div>
+    <div class="time-box">
+        <span id="hours">00</span>
+        <small>Hours</small>
+    </div>
+    <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Minutes</small>
+    </div>
+    <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Seconds</small>
+    </div>
+</div>
             
             <button class="btn" onclick="openInvitation()">Open Invitation</button>
         </div>
@@ -648,6 +701,36 @@
         
         // Initialize
         createPetals();
+        function updateCountdown() {
+    const weddingDate = new Date("April 29, 2026 19:51:00").getTime();
+    const now = new Date().getTime();
+    const gap = weddingDate - now;
+
+    if (gap <= 0) {
+        document.getElementById("countdown").innerHTML = "🎉 It's Wedding Day!";
+        return;
+    }
+
+    const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((gap / (1000 * 60)) % 60);
+    const seconds = Math.floor((gap / 1000) % 60);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+
+    // animation effect
+    document.querySelectorAll(".time-box span").forEach(el => {
+        el.style.transform = "scale(1.1)";
+        setTimeout(() => el.style.transform = "scale(1)", 200);
+    });
+}
+
+// Start countdown
+setInterval(updateCountdown, 1000);
+updateCountdown();
     </script>
 </body>
 </html>
