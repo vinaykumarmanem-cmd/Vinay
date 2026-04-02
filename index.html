@@ -597,6 +597,9 @@
             <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 8px;">29 April 2026 • Chapara Village</p>
         </footer>
     </div>
+    <audio id="bg-music" loop>
+    <source src="song.mp3.mpeg" type="audio/mpeg">
+</audio>
     
     <script>
         // Create floating petals
@@ -613,8 +616,20 @@
         
         // Open invitation
         function openInvitation() {
-            const cover = document.getElementById('cover');
-            const mainContent = document.getElementById('main-content');
+            const cover = document.getElementById('cover').style.display = 'none';
+            const mainContent = document.getElementById('main-content').style.display = 'block';
+            const music = document.getElementById('bg-music');
+    music.play();
+}
+        function toggleMusic() {
+    const music = document.getElementById('bg-music');
+
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
             
             cover.classList.add('closing');
             
