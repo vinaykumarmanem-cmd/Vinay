@@ -614,37 +614,19 @@
             }
         }
         
-        // Open invitation
-        function openInvitation() {
+       function openInvitation() {
     const cover = document.getElementById('cover');
     const mainContent = document.getElementById('main-content');
     const music = document.getElementById('bg-music');
-            function toggleMusic() {
-    const music = document.getElementById('bg-music');
 
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
-}
+    if (music) music.play().catch(() => {});
 
-    // play music
-    if (music) music.play();
-
-    // start fade animation
-    cover.classList.add('closing');
+    cover.style.opacity = "0";
 
     setTimeout(() => {
         cover.style.display = 'none';
-
-        // show content (optional before redirect)
         mainContent.style.display = 'block';
-
-        // ✅ Redirect AFTER animation
-        window.location.href = "index.html";
-
-    }, 400); // match your CSS transition time
+    }, 400);
 }
         
         // Scroll animations using Intersection Observer
